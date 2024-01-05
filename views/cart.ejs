@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+</head>
+<body>
+  <% if (locals.selectedDogs && locals.cartItems) { %>
+  <h1>Shopping Cart</h1>
+    <% cartItems.forEach((item, index) => { %>
+      <form action="/add-to-cart" method="post">
+        <input type="checkbox" name="<%= item.name %>" id="<%= item.name %>">
+        <label for="<%= item.name %>"><%= item.name %> - ₹<%= item.price.toLocaleString("en-IN") %></label>
+        <br />
+        <% }); %> 
+        <br />
+        <button type="submit">Add to cart</button>
+      </form>
+  <p> Cart Items : 
+    <ul>
+    <% selectedDogs.forEach(item => { %>
+      <li><%= item.name %> - ₹<%= item.price.toLocaleString("en-IN") %></li>
+    <% }); %>
+    </ul>
+    <p>Total: ₹<%= total.toLocaleString("en-IN") %></p>
+  </p>
+  <% } else { %>
+    <% cartItems.forEach((item, index) => { %>
+      <form action="/add-to-cart" method="post">
+        <input type="checkbox" name="<%= item.name %>" id="<%= item.name %>">
+        <label for="<%= item.name %>"><%= item.name %> - ₹<%= item.price.toLocaleString("en-IN") %></label>
+        <br />
+        <% }); %> 
+        <br />
+        <button type="submit">Add to cart</button>
+      </form>
+<% } %>
+</body>
+</html>
